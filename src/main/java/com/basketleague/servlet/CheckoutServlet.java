@@ -1,0 +1,19 @@
+package com.basketleague.servlet;
+
+import com.basketleague.shop.CartUtils;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet("/cart/checkout")
+public class CheckoutServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException {
+        CartUtils.clear(req.getSession());
+        req.getSession().setAttribute("success", "Заказ успешно оформлен!");
+        resp.sendRedirect("/cart");
+    }
+}
